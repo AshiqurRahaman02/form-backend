@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const q2Schema = new mongoose.Schema({
 	description: String,
+	q2Image: String,
 	preview: String,
 	correctAnswer: String,
 	markOnCorrectAnswer: Number,
