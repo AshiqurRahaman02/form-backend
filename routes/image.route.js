@@ -19,7 +19,7 @@ function uploadImageToCloudinary(file) {
 imageRouter.post("/upload", async (req, res) => {
 	try {
 		const { image } = req.files;
-		console.log(image)
+		console.log(image);
 		const imageResult = await uploadImageToCloudinary(image);
 
 		res.status(200).json({ isError: false, imageResult });
