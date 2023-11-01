@@ -4,6 +4,7 @@ const formSchema = new mongoose.Schema({
   name: String,
 	description: String,
   adminId: String, 
+  headerImage:String,
   q1: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Q1',
