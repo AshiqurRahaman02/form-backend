@@ -1,12 +1,9 @@
 const mongoose = require("mongoose");
 
 const q3Schema = new mongoose.Schema({
+	description: String,
 	paragraph: String,
-	mcq: [{
-		question: String,
-		options: [String],
-		correctOption: String,
-	}],
+	mcq: [],
 	markOnCorrectAnswer: Number,
 });
 

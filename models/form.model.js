@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const formSchema = new mongoose.Schema({
   name: String,
+	description: String,
   adminId: String, 
   q1: {
     type: mongoose.Schema.Types.ObjectId,
