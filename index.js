@@ -7,12 +7,12 @@ const bodyParser = require("body-parser");
 
 let { connection } = require("./db");
 
-const {userRouter} = require("./routes/user.route")
-const {formRouter} = require("./routes/form.route")
-const {q1Router} = require("./routes/q1.route")
-const {q2Router} = require("./routes/q2.route")
-const {q3Router} = require("./routes/q3.route")
-const {imageRouter} = require("./routes/image.route")
+const { userRouter } = require("./routes/user.route");
+const { formRouter } = require("./routes/form.route");
+const { q1Router } = require("./routes/q1.route");
+const { q2Router } = require("./routes/q2.route");
+const { q3Router } = require("./routes/q3.route");
+const { imageRouter } = require("./routes/image.route");
 
 const app = express();
 
@@ -36,18 +36,16 @@ cloudinary.config({
 	api_secret: process.env.apiSecret,
 });
 
-
-
 app.get("/", (req, res) => {
 	res.send("Welcome to our API");
 });
 
-app.use("/user", userRouter)
-app.use("/form", formRouter)
-app.use("/q1", q1Router)
-app.use("/q2", q2Router)
-app.use("/q3", q3Router)
-app.use("/image", imageRouter)
+app.use("/user", userRouter);
+app.use("/form", formRouter);
+app.use("/q1", q1Router);
+app.use("/q2", q2Router);
+app.use("/q3", q3Router);
+app.use("/image", imageRouter);
 
 app.listen(process.env.port, async () => {
 	try {
