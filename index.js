@@ -5,13 +5,13 @@ const cloudinary = require("cloudinary");
 const fileupload = require("express-fileupload");
 const bodyParser = require("body-parser");
 
-let { connection } = require("./db");
+let { connection } = require("./config/db");
 
 const { userRouter } = require("./routes/user.route");
 const { formRouter } = require("./routes/form.route");
-const { q1Router } = require("./routes/q1.route");
-const { q2Router } = require("./routes/q2.route");
-const { q3Router } = require("./routes/q3.route");
+const { q1Router } = require("./routes/question1.route");
+const { q2Router } = require("./routes/question2.route");
+const { q3Router } = require("./routes/question3.route");
 const { imageRouter } = require("./routes/image.route");
 
 const app = express();
