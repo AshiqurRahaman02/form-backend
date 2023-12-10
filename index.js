@@ -6,12 +6,11 @@ const fileupload = require("express-fileupload");
 const bodyParser = require("body-parser");
 
 let { connection } = require("./config/db");
+const {cloudinaryConnection} = require("./config/cloudinary.connection")
 
 const { userRouter } = require("./routes/user.route");
 const { formRouter } = require("./routes/form.route");
-const { q1Router } = require("./routes/question1.route");
-const { q2Router } = require("./routes/question2.route");
-const { q3Router } = require("./routes/question3.route");
+const { questionRouter } = require("./routes/question.route")
 const { imageRouter } = require("./routes/image.route");
 
 const app = express();
@@ -30,27 +29,20 @@ app.use(
 );
 app.use(bodyParser.json());
 
-cloudinary.config({
-	cloud_name: process.env.cloudName,
-	api_key: process.env.apiKey,
-	api_secret: process.env.apiSecret,
-});
-
 app.get("/", (req, res) => {
 	res.send("Welcome to our API");
 });
 
 app.use("/user", userRouter);
 app.use("/form", formRouter);
-app.use("/q1", q1Router);
-app.use("/q2", q2Router);
-app.use("/q3", q3Router);
+app.use("/question", questionRouter);
 app.use("/image", imageRouter);
 
 app.listen(process.env.port, async () => {
 	try {
 		await connection;
-		console.log("Connected to Database");
+		await cloudinaryConnection;
+		console.log("Connected to Database and Cloudinary");
 	} catch (error) {
 		console.log(error);
 		console.log("Unable to connect to Database");
