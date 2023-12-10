@@ -8,6 +8,6 @@ const q1Schema = new mongoose.Schema({
 	markOnCorrectAnswer: Number,
 });
 
-const Q1Model = mongoose.model("Q1", q1Schema);
+const Question1Model = mongoose.model("Q1", q1Schema);
 
-module.exports = { Q1Model };
+module.exports = { Question1Model };

@@ -3,7 +3,10 @@ const mongoose = require("mongoose");
 const formSchema = new mongoose.Schema({
 	name: String,
 	description: String,
-	adminId: String,
+	adminId: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: "user",
+	},
 	headerImage: String,
 	q1: {
 		type: mongoose.Schema.Types.ObjectId,

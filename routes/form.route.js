@@ -1,42 +1,16 @@
 const express = require("express");
 
 const { FormModel } = require("../models/form.model");
-const { Q1Model } = require("../models/q1.model");
-const { Q2Model } = require("../models/q2.model");
-const { Q3Model } = require("../models/q3.model");
+const { Question1Model } = require("../models/question1.model");
+const { Question2Model } = require("../models/question2.model");
+const { Question3Model } = require("../models/question3.model");
+
+const {createForm, getForm} = require("../Controllers/form.controller")
 
 const formRouter = express.Router();
 
-formRouter.post("/create", async (req, res) => {
-	try {
-		console.log(req.body);
-		const form = new FormModel(req.body);
-		await form.save();
-		res.status(200).json({ isError: false, form });
-	} catch (error) {
-		res.status(500).json({ isError: true, message: error.message });
-	}
-});
-
-formRouter.get("/get/:id", async (req, res) => {
-	try {
-		const form = await FormModel.findById(req.params.id)
-			.populate("q1")
-			.populate("q2")
-			.populate("q3")
-			.exec();
-
-		if (!form) {
-			return res
-				.status(404)
-				.json({ isError: true, error: "Form not found" });
-		}
-
-		res.status(200).json({ isError: false, form });
-	} catch (error) {
-		res.status(500).json({ error: "Error fetching the form" });
-	}
-});
+formRouter.post("/create", createForm);
+formRouter.get("/get/:id", getForm);
 
 module.exports = {
 	formRouter,
